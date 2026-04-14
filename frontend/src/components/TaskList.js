@@ -40,10 +40,12 @@ export default function TaskList({ tasks, onDelete, onToggle, onEdit }) {
   }, [tasks.length, isPaused]);
 
   function handleNext() {
+    if (tasks.length <= 1) return;
     setCurrentIndex((prev) => prev + 1);
   }
 
   function handlePrev() {
+    if (tasks.length <= 1) return;
     setCurrentIndex((prev) => prev - 1);
   }
 
