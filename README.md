@@ -110,9 +110,9 @@ Each task follows the structure:
 | Task                   | Estimated Time |
 | ---------------------- | -------------- |
 | Backend API            | 120 minutes    |
-| Frontend Core Features | 120 minutes    |
-| Styling & Carousel     | 30 minutes     |
-| Testing & Debugging    | 90 minutes     |
+| Frontend Core Features | 180 minutes    |
+| Styling & Carousel     | 60 minutes     |
+| Testing & Debugging    | 60 minutes     |
 
 ## Author
 
