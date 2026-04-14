@@ -162,6 +162,11 @@ h1 {
   cursor: pointer;
 }
 
+.carousel-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .carousel-btn:hover {
   background-color: var(--button-border);
 }

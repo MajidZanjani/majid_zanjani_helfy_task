@@ -70,7 +70,11 @@ export default function TaskList({ tasks, onDelete, onToggle, onEdit }) {
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      <button className="carousel-btn" onClick={handlePrev}>
+      <button
+        className="carousel-btn"
+        onClick={handlePrev}
+        disabled={tasks.length <= 1}
+      >
         Prev
       </button>
 
@@ -96,7 +100,11 @@ export default function TaskList({ tasks, onDelete, onToggle, onEdit }) {
         </div>
       </div>
 
-      <button className="carousel-btn" onClick={handleNext}>
+      <button
+        className="carousel-btn"
+        onClick={handleNext}
+        disabled={tasks.length <= 1}
+      >
         Next
       </button>
     </div>
