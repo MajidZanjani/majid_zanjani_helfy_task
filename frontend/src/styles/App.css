@@ -124,3 +124,24 @@ h1 {
   font-size: 16px;
   cursor: pointer;
 }
+
+.task-filter {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+  justify-content: center;
+}
+
+.task-filter button {
+  padding: 8px 14px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  background-color: white;
+  border-radius: 6px;
+}
+
+.task-filter button.active-filter {
+  background-color: #333;
+  color: white;
+  border-color: #333;
+}

@@ -9,12 +9,14 @@ import {
 } from "./services/api";
 import TaskList from "./components/TaskList";
 import TaskForm from "./components/TaskForm";
+import TaskFilter from "./components/TaskFilter";
 
 function App() {
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [editingTask, setEditingTask] = useState(null);
+  const [filter, setFilter] = useState("all");
 
   useEffect(() => {
     async function loadTasks() {
@@ -91,6 +93,16 @@ function App() {
     setEditingTask(null);
   }
 
+  const filteredTasks = tasks.filter((task) => {
+    if (filter === "completed") {
+      return task.completed;
+    }
+    if (filter === "pending") {
+      return !task.completed;
+    }
+    return true;
+  });
+
   return (
     <div className="app">
       <h1>Task Manager</h1>
@@ -101,12 +113,13 @@ function App() {
         editingTask={editingTask}
         onCancelEdit={handleCancelEdit}
       />
+      <TaskFilter currentFilter={filter} onFilterChange={setFilter} />
 
       {loading && <p>Loading tasks...</p>}
       {error && <p>{error}</p>}
       {!loading && !error && (
         <TaskList
-          tasks={tasks}
+          tasks={filteredTasks}
           onDelete={handleDelete}
           onToggle={handleToggle}
           onEdit={handleEditTask}
