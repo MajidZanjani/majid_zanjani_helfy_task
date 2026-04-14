@@ -21,3 +21,40 @@ h1 {
   padding: 16px;
   margin-bottom: 12px;
 }
+
+.task-form {
+  background-color: white;
+  border: 1px solid #d6d6d6;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+.task-form h2 {
+  margin-top: 0;
+}
+
+.task-form input,
+.task-form textarea,
+.task-form select {
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 12px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.task-form textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.task-form button {
+  padding: 10px 16px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.form-error {
+  color: red;
+}
