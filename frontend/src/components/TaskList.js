@@ -38,7 +38,6 @@ export default function TaskList({ tasks, onDelete, onToggle }) {
 
   function handleTransitionEnd() {
     if (tasks.length <= 1) return;
-
     if (currentIndex === extendedTasks.length - 1) {
       setIsTransitionEnabled(false);
       setCurrentIndex(1);
