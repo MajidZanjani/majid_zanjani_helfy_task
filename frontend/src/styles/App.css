@@ -55,6 +55,11 @@ h1 {
   cursor: pointer;
 }
 
+.form-actions {
+  display: flex;
+  gap: 10px;
+}
+
 .form-error {
   color: red;
 }

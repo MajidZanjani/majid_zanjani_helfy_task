@@ -1,10 +1,29 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export default function TaskForm({ onAddTask }) {
+export default function TaskForm({
+  onAddTask,
+  onUpdateTask,
+  editingTask,
+  onCancelEdit,
+}) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState("low");
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (editingTask) {
+      setTitle(editingTask.title);
+      setDescription(editingTask.description);
+      setPriority(editingTask.priority);
+      setError("");
+    } else {
+      setTitle("");
+      setDescription("");
+      setPriority("low");
+      setError("");
+    }
+  }, [editingTask]);
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -16,15 +35,22 @@ export default function TaskForm({ onAddTask }) {
 
     setError("");
 
-    const newTask = {
+    const taskData = {
       title: title.trim(),
       description: description.trim(),
       priority,
+      completed: editingTask ? editingTask.completed : false,
     };
 
-    const success = await onAddTask(newTask);
+    let success = false;
 
-    if (success) {
+    if (editingTask) {
+      success = await onUpdateTask(editingTask.id, taskData);
+    } else {
+      success = await onAddTask(taskData);
+    }
+
+    if (success && !editingTask) {
       setTitle("");
       setDescription("");
       setPriority("low");
@@ -33,22 +59,19 @@ export default function TaskForm({ onAddTask }) {
 
   return (
     <form className="task-form" onSubmit={handleSubmit}>
-      <h2>Add Task</h2>
+      <h2>{editingTask ? "Edit Task" : "Add Task"}</h2>
       {error && <p className="form-error">{error}</p>}
-
       <input
         type="text"
         placeholder="Task title"
         value={title}
         onChange={(event) => setTitle(event.target.value)}
       />
-
       <textarea
         placeholder="Task description"
         value={description}
         onChange={(event) => setDescription(event.target.value)}
       />
-
       <select
         value={priority}
         onChange={(event) => setPriority(event.target.value)}
@@ -57,8 +80,16 @@ export default function TaskForm({ onAddTask }) {
         <option value="medium">Medium</option>
         <option value="high">High</option>
       </select>
-
-      <button type="submit">Add Task</button>
+      <div className="form-actions">
+        <button type="submit">
+          {editingTask ? "Update Task" : "Add Task"}
+        </button>
+        {editingTask && (
+          <button type="button" onClick={onCancelEdit}>
+            Cancel
+          </button>
+        )}
+      </div>
     </form>
   );
 }

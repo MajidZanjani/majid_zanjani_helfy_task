@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import TaskItem from "./TaskItem";
 
-export default function TaskList({ tasks, onDelete, onToggle }) {
+export default function TaskList({ tasks, onDelete, onToggle, onEdit }) {
   const extendedTasks = useMemo(() => {
     if (tasks.length === 0) return [];
     if (tasks.length === 1) return [...tasks];
@@ -83,7 +83,12 @@ export default function TaskList({ tasks, onDelete, onToggle }) {
         >
           {extendedTasks.map((task, index) => (
             <div className="carousel-slide" key={`${task.id}-${index}`}>
-              <TaskItem task={task} onDelete={onDelete} onToggle={onToggle} />
+              <TaskItem
+                task={task}
+                onDelete={onDelete}
+                onToggle={onToggle}
+                onEdit={onEdit}
+              />
             </div>
           ))}
         </div>

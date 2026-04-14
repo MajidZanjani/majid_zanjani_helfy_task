@@ -1,4 +1,4 @@
-export default function TaskItem({ task, onDelete, onToggle }) {
+export default function TaskItem({ task, onDelete, onToggle, onEdit }) {
   return (
     <div className={`task-item ${task.completed ? "completed" : ""}`}>
       <h3>{task.title}</h3>
@@ -14,6 +14,7 @@ export default function TaskItem({ task, onDelete, onToggle }) {
         <button onClick={() => onToggle(task.id)}>
           {task.completed ? "Mark as Pending" : "Mark as Completed"}
         </button>
+        <button onClick={() => onEdit(task)}>Edit</button>
         <button className="delete-btn" onClick={() => onDelete(task.id)}>
           Delete
         </button>
