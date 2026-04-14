@@ -10,6 +10,7 @@ export default function TaskList({ tasks, onDelete, onToggle }) {
 
   const [currentIndex, setCurrentIndex] = useState(1);
   const [isTransitionEnabled, setIsTransitionEnabled] = useState(true);
+  const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
     if (tasks.length > 1) {
@@ -27,6 +28,16 @@ export default function TaskList({ tasks, onDelete, onToggle }) {
       return () => clearTimeout(timeout);
     }
   }, [isTransitionEnabled]);
+
+  useEffect(() => {
+    if (tasks.length <= 1 || isPaused) return;
+
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => prev + 1);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [tasks.length, isPaused]);
 
   function handleNext() {
     setCurrentIndex((prev) => prev + 1);
@@ -52,7 +63,11 @@ export default function TaskList({ tasks, onDelete, onToggle }) {
   }
 
   return (
-    <div className="carousel-wrapper">
+    <div
+      className="carousel-wrapper"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
       <button className="carousel-btn" onClick={handlePrev}>
         Prev
       </button>
