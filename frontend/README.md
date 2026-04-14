@@ -1,70 +1,120 @@
-# Getting Started with Create React App
+# Task Manager App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A full-stack Task Manager application built with **React**, **Express.js**, and **Node.js**. This project allows users to create, view, update, delete, and manage tasks through an interface featuring an **endless animated carousel**.
 
-## Available Scripts
+## Backend Setup
 
-In the project directory, you can run:
+1. cd backend
+2. npm install
+3. npm start (runs on port 4000)
 
-### `npm start`
+## Frontend Setup
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. cd frontend
+2. npm install
+3. npm start (runs on port 3000)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## API Endpoints
 
-### `npm test`
+- GET /api/tasks
+- POST /api/tasks
+- PUT /api/tasks/:id
+- DELETE /api/tasks/:id
+- PATCH /api/tasks/:id/toggle
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Backend (Express.js & Node.js)
 
-### `npm run build`
+- RESTful API with proper HTTP methods
+- In-memory data storage (no database required)
+- Input validation using middleware
+- Error handling with meaningful status codes
+- CORS support for frontend-backend communication
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Frontend (React)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Endless animated carousel with smooth transitions
+- Create, edit, delete, and toggle tasks
+- Filter tasks by **All**, **Completed**, and **Pending**
+- Auto-sliding carousel with pause-on-hover
+- Responsive design using pure CSS
+- Seamless integration with backend APIs
+- Loading states and error handling
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Task Model
 
-### `npm run eject`
+Each task follows the structure:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```json
+{
+  "id": 1,
+  "title": "Complete Assignment",
+  "description": "Build Task Manager App",
+  "completed": false,
+  "createdAt": "2026-01-01T12:00:00.000Z",
+  "priority": "high"
+}
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**Priority Options:**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- `low`
+- `medium`
+- `high`
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Testing the API with Postman
 
-## Learn More
+- Create new task:
+  **POST** `/api/tasks`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```json
+{
+  "title": "Learn React",
+  "description": "Study hooks and state management",
+  "priority": "high"
+}
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Toggle task completion:
+  **PATCH** `/api/tasks/1/toggle`
 
-### Code Splitting
+- Update task:
+  **PUT** `/api/tasks/1`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```json
+{
+  "title": "Learn React in Depth",
+  "description": "Study advanced hooks",
+  "priority": "medium",
+  "completed": false
+}
+```
 
-### Analyzing the Bundle Size
+- Delete a task:
+  **DELETE** `/api/tasks/1`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Concepts Demonstrated
 
-### Making a Progressive Web App
+- React Hooks (`useState`, `useEffect`, `useMemo`)
+- Component-based architecture
+- RESTful API design
+- Express middleware usage
+- Asynchronous JavaScript (`async/await`)
+- State management and props
+- Infinite carousel logic
+- Error handling and validation
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Time Allocation (approximate)
 
-### Advanced Configuration
+| Task                   | Estimated Time |
+| ---------------------- | -------------- |
+| Backend API            | 120 minutes    |
+| Frontend Core Features | 120 minutes    |
+| Styling & Carousel     | 30 minutes     |
+| Testing & Debugging    | 90 minutes     |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Author
 
-### Deployment
+**Majid Zanjani**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- GitHub: https://github.com/MajidZanjani
+- LinkedIn: https://www.linkedin.com/
