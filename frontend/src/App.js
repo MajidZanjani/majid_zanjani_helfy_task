@@ -23,6 +23,7 @@ function App() {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
   }
 
+  // load initial tasks from localstorage / updates from backend
   useEffect(() => {
     async function loadTasks() {
       try {
@@ -40,10 +41,10 @@ function App() {
         setLoading(false);
       }
     }
-
     loadTasks();
   }, []);
 
+  // add new or update tasks to localstorage whenever dependency changes
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);

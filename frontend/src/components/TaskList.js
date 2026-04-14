@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import TaskItem from "./TaskItem";
 
 export default function TaskList({ tasks, onDelete, onToggle, onEdit }) {
+  //duplicate 0 & tasks.length items for making carousel infinite like
   const extendedTasks = useMemo(() => {
     if (tasks.length === 0) return [];
     if (tasks.length === 1) return [...tasks];
@@ -12,6 +13,7 @@ export default function TaskList({ tasks, onDelete, onToggle, onEdit }) {
   const [isTransitionEnabled, setIsTransitionEnabled] = useState(true);
   const [isPaused, setIsPaused] = useState(false);
 
+  // set current index of carousel on tasks.length changes
   useEffect(() => {
     if (tasks.length > 1) {
       setCurrentIndex(1);
@@ -20,6 +22,7 @@ export default function TaskList({ tasks, onDelete, onToggle, onEdit }) {
     }
   }, [tasks.length]);
 
+  // schedule transition enabling
   useEffect(() => {
     if (!isTransitionEnabled) {
       const timeout = setTimeout(() => {
@@ -29,13 +32,12 @@ export default function TaskList({ tasks, onDelete, onToggle, onEdit }) {
     }
   }, [isTransitionEnabled]);
 
+  // auto scroll carousel
   useEffect(() => {
     if (tasks.length <= 1 || isPaused) return;
-
     const interval = setInterval(() => {
       setCurrentIndex((prev) => prev + 1);
     }, 3000);
-
     return () => clearInterval(interval);
   }, [tasks.length, isPaused]);
 
@@ -49,6 +51,7 @@ export default function TaskList({ tasks, onDelete, onToggle, onEdit }) {
     setCurrentIndex((prev) => prev - 1);
   }
 
+  // check if currentIndex is a cloned task item
   function handleTransitionEnd() {
     if (tasks.length <= 1) return;
     if (currentIndex === extendedTasks.length - 1) {
