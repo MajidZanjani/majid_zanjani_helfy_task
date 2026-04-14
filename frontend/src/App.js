@@ -48,8 +48,8 @@ function App() {
   async function handleToggle(id) {
     try {
       const updatedTask = await toggleTask(id);
-      setTasks((prevTasks) =>
-        prevTasks.map((task) => (task.id === id ? updatedTask : task)),
+      setTasks((prev) =>
+        prev.map((task) => (task.id === id ? updatedTask : task)),
       );
     } catch (err) {
       setError(err.message);

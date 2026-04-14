@@ -89,3 +89,33 @@ h1 {
   color: red;
   text-align: center;
 }
+
+.carousel-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.carousel-viewport {
+  overflow: hidden;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.carousel-track {
+  display: flex;
+}
+
+.carousel-slide {
+  min-width: 100%;
+  box-sizing: border-box;
+  padding: 4px;
+}
+
+.carousel-btn {
+  padding: 10px 14px;
+  font-size: 16px;
+  cursor: pointer;
+}
