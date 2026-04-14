@@ -18,12 +18,28 @@ export async function createTask(taskData) {
     },
     body: JSON.stringify(taskData),
   });
-
   const data = await response.json();
-
   if (!response.ok) {
     throw new Error(data.message || "Failed to create task.");
   }
-
   return data;
+}
+
+export async function deleteTask(id) {
+  const response = await fetch(`${API_URL}/${id}`, {
+    method: "DELETE",
+  });
+  if (!response.ok) {
+    throw new Error("Failed to delete task");
+  }
+}
+
+export async function toggleTask(id) {
+  const response = await fetch(`${API_URL}/${id}/toggle`, {
+    method: "PATCH",
+  });
+  if (!response.ok) {
+    throw new Error("Failed to toggle task");
+  }
+  return response.json();
 }

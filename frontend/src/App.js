@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./styles/App.css";
-import { createTask, getTasks } from "./services/api";
+import { createTask, deleteTask, getTasks, toggleTask } from "./services/api";
 import TaskList from "./components/TaskList";
 import TaskForm from "./components/TaskForm";
 
@@ -36,6 +36,26 @@ function App() {
     }
   }
 
+  async function handleDelete(id) {
+    try {
+      await deleteTask(id);
+      setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
+    } catch (err) {
+      setError(err.message);
+    }
+  }
+
+  async function handleToggle(id) {
+    try {
+      const updatedTask = await toggleTask(id);
+      setTasks((prevTasks) =>
+        prevTasks.map((task) => (task.id === id ? updatedTask : task)),
+      );
+    } catch (err) {
+      setError(err.message);
+    }
+  }
+
   return (
     <div className="app">
       <h1>Task Manager</h1>
@@ -44,7 +64,13 @@ function App() {
 
       {loading && <p>Loading tasks...</p>}
       {error && <p>{error}</p>}
-      {!loading && !error && <TaskList tasks={tasks} />}
+      {!loading && !error && (
+        <TaskList
+          tasks={tasks}
+          onDelete={handleDelete}
+          onToggle={handleToggle}
+        />
+      )}
     </div>
   );
 }
