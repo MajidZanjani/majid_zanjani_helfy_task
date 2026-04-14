@@ -40,6 +40,7 @@ A full-stack Task Manager application built with **React**, **Express.js**, and 
 - Seamless integration with backend APIs
 - Loading states and error handling
 - LocalStorage for persistence data on frontend
+- Light / Dark Theme
 
 ## Task Model
 
