@@ -117,4 +117,4 @@ Each task follows the structure:
 **Majid Zanjani**
 
 - GitHub: https://github.com/MajidZanjani
-- LinkedIn: https://www.linkedin.com/
+- LinkedIn: https://www.linkedin.com/in/majidzanjani/
