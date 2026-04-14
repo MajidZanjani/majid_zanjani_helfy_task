@@ -1,13 +1,38 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
 }
 
 .app {
-  max-width: 800px;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  max-width: 1000px;
   margin: 0 auto;
-  padding: 20px;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+  padding: 5px;
+}
+
+.light-theme {
+  --bg-color: #f4f4f4;
+  --text-color: #222;
+  --card-bg: #ffffff;
+  --card-border: #dddddd;
+  --button-bg: #ffffff;
+  --button-text: #222;
+  --button-border: #cccccc;
+  --button-bg-hover: #6a6a6a;
+}
+
+.dark-theme {
+  --bg-color: #1f1f1f;
+  --text-color: #f5f5f5;
+  --card-bg: #2b2b2b;
+  --card-border: #444444;
+  --button-bg: #333333;
+  --button-text: #f5f5f5;
+  --button-border: #555555;
 }
 
 h1 {
@@ -15,16 +40,17 @@ h1 {
 }
 
 .task-item {
-  background-color: white;
-  border: 1px solid #d6d6d6;
-  border-radius: 8px;
-  padding: 16px;
-  margin-bottom: 12px;
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  padding: 20px;
+  min-height: 220px;
+  box-sizing: border-box;
 }
 
 .task-form {
-  background-color: white;
-  border: 1px solid #d6d6d6;
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
   border-radius: 8px;
   padding: 16px;
   margin-bottom: 20px;
@@ -42,6 +68,9 @@ h1 {
   margin-bottom: 12px;
   padding: 10px;
   font-size: 16px;
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  border: 1px solid var(--card-border);
 }
 
 .task-form textarea {
@@ -53,6 +82,10 @@ h1 {
   padding: 10px 16px;
   font-size: 16px;
   cursor: pointer;
+}
+
+.task-form button:hover {
+  background-color: var(--button-border);
 }
 
 .form-actions {
@@ -73,6 +106,10 @@ h1 {
 .task-actions button {
   padding: 6px 12px;
   cursor: pointer;
+}
+
+.task-actions .mark-edit-btn:hover {
+  background-color: var(--button-border);
 }
 
 .delete-btn {
@@ -125,6 +162,10 @@ h1 {
   cursor: pointer;
 }
 
+.carousel-btn:hover {
+  background-color: var(--button-border);
+}
+
 .task-filter {
   display: flex;
   gap: 10px;
@@ -135,13 +176,45 @@ h1 {
 .task-filter button {
   padding: 8px 14px;
   cursor: pointer;
-  border: 1px solid #ccc;
-  background-color: white;
+  border: 1px solid var(--button-border);
+  background-color: var(--button-bg);
+  color: var(--button-text);
   border-radius: 6px;
 }
 
+.task-filter button:hover {
+  background-color: var(--button-border);
+}
+
 .task-filter button.active-filter {
-  background-color: #333;
-  color: white;
+  background-color: var(--button-text);
+  color: var(--button-border);
   border-color: #333;
+}
+
+.carousel-btn,
+.task-actions button,
+.task-form button,
+.theme-toggle-btn {
+  padding: 8px 14px;
+  cursor: pointer;
+  border: 1px solid var(--button-border);
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  border-radius: 6px;
+}
+
+.top-bar {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin: 20px 0;
+}
+.top-bar button:hover {
+  background-color: var(--button-border);
+}
+
+.top-bar h1 {
+  margin: 0;
 }

@@ -17,12 +17,23 @@ function App() {
   const [error, setError] = useState("");
   const [editingTask, setEditingTask] = useState(null);
   const [filter, setFilter] = useState("all");
+  const [theme, setTheme] = useState("light");
+
+  function handleToggleTheme() {
+    setTheme((prev) => (prev === "light" ? "dark" : "light"));
+  }
 
   useEffect(() => {
     async function loadTasks() {
       try {
+        const storedTasks = localStorage.getItem("tasks");
+        if (storedTasks) {
+          setTasks(JSON.parse(storedTasks));
+          setLoading(false);
+        }
         const data = await getTasks();
         setTasks(data);
+        localStorage.setItem("tasks", JSON.stringify(data));
       } catch (error) {
         setError("Couldn't load tasks. Please check your connection.");
       } finally {
@@ -32,6 +43,10 @@ function App() {
 
     loadTasks();
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
   async function handleAddTask(taskData) {
     try {
@@ -104,8 +119,13 @@ function App() {
   });
 
   return (
-    <div className="app">
-      <h1>Task Manager</h1>
+    <div className={`app ${theme}-theme`}>
+      <div className="top-bar">
+        <h1>Task Manager</h1>
+        <button className="theme-toggle-btn" onClick={handleToggleTheme}>
+          Switch to {theme === "light" ? "Dark" : "Light"} Mode
+        </button>
+      </div>
 
       <TaskForm
         onAddTask={handleAddTask}

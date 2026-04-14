@@ -11,10 +11,12 @@ export default function TaskItem({ task, onDelete, onToggle, onEdit }) {
       </p>
 
       <div className="task-actions">
-        <button onClick={() => onToggle(task.id)}>
+        <button className="mark-edit-btn" onClick={() => onToggle(task.id)}>
           {task.completed ? "Mark as Pending" : "Mark as Completed"}
         </button>
-        <button onClick={() => onEdit(task)}>Edit</button>
+        <button className="mark-edit-btn" onClick={() => onEdit(task)}>
+          Edit
+        </button>
         <button className="delete-btn" onClick={() => onDelete(task.id)}>
           Delete
         </button>
